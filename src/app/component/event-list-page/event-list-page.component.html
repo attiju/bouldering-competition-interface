@@ -8,7 +8,7 @@
   <div class="absolute top-0 bottom-0 left-0 right-0 overflow-auto pt-28">
     <ul *ngIf="events">
       <li *ngFor="let event of events" (click)="onEventClick(event.id, $event)">
-        <div class="bg-white shadow-sm rounded-xl mx-8 md:mx-32 overflow-hidden mb-4 relative border">
+        <div class="bg-white shadow-sm rounded-xl mx-8 md:mx-32 overflow-hidden mb-4 relative border cursor-pointer">
           <div class="absolute top-4 right-4 rounded-full w-2 h-2 animate-pulse" [ngClass]="event.active ? 'bg-green-300' : 'bg-orange-300'"></div>
           <div class="flex flex-row">
             <div class="flex-1 flex items-center h-36">
