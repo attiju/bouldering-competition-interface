@@ -128,6 +128,15 @@
             ],
             "scripts": []
           }
+        },
+        "options": {
+          "assets": [
+            {
+              "glob": "_redirects",
+              "input": "src",
+              "output": "/"
+            }
+          ]
         }
       }
     }
