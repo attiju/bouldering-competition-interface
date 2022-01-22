@@ -2,7 +2,7 @@
   <ng-container *ngIf="eventName && eventColor">
     <div class="absolute w-screen h-36 shadow flex justify-center items-center rounded-b-2xl" [ngStyle]="{ backgroundColor: eventColor }">
       <div class="text-center text-white text-4xl font-bold">
-        {{ eventName | titlecase }}
+        {{ eventName | titlecase }} - {{ climber.firstname | titlecase }} {{ climber.lastname | uppercase }}
       </div>
       <div class="absolute top-4 right-4 rounded-full w-4 h-4 animate-pulse" [ngClass]="eventActive ? 'bg-green-300' : 'bg-orange-300'"></div>
     </div>
