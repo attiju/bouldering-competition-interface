@@ -1,0 +1,39 @@
+<div class="page relative">
+  <ng-container *ngIf="event">
+    <div class="absolute w-screen h-36 shadow flex justify-center items-center rounded-b-2xl" [ngStyle]="{ backgroundColor: eventColor }">
+      <div class="text-center text-white text-4xl font-bold">
+        {{ event.name | titlecase }}
+      </div>
+      <div class="absolute top-4 right-4 rounded-full w-4 h-4 animate-pulse" [ngClass]="event.active ? 'bg-green-300' : 'bg-orange-300'"></div>
+    </div>
+
+    <div class="absolute top-0 bottom-0 left-0 right-0 overflow-auto pt-28">
+      <ul>
+        <li *ngFor="let climber of males" (click)="onClimberClick(climber)">
+          <div class="bg-white shadow-sm rounded-xl mx-8 md:mx-32 overflow-hidden mb-2 relative border cursor-pointer select-none">
+            <div class="flex flex-row">
+              <div class="flex-1 flex items-center">
+                <div class="px-8 py-2 flex flex-row justify-between w-full items-center">
+                  <div class="text-lg font-semibold">{{ climber.firstname | titlecase }} {{ climber.lastname | uppercase }}</div>
+                  <div class="text-sm">{{ climber.boulders.length }} / {{ event.options.boulders }}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li *ngFor="let climber of females" (click)="onClimberClick(climber)">
+          <div class="bg-white shadow-sm rounded-xl mx-8 md:mx-32 overflow-hidden mb-2 relative border cursor-pointer select-none">
+            <div class="flex flex-row">
+              <div class="flex-1 flex items-center">
+                <div class="px-8 py-2 flex flex-row justify-between w-full items-center">
+                  <div class="text-lg font-semibold">{{ climber.firstname | titlecase }} {{ climber.lastname | uppercase }}</div>
+                  <div class="text-sm">{{ climber.boulders.length }} / {{ event.options.boulders }}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </ng-container>
+</div>
