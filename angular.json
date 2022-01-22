@@ -53,7 +53,12 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "_redirects",
+                "input": "src",
+                "output": "/"
+              }
             ],
             "styles": [
               "src/styles.scss"
@@ -128,15 +133,6 @@
             ],
             "scripts": []
           }
-        },
-        "options": {
-          "assets": [
-            {
-              "glob": "_redirects",
-              "input": "src",
-              "output": "/"
-            }
-          ]
         }
       }
     }
