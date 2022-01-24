@@ -32,6 +32,11 @@ const routes: Routes = [
     ]
   },
   {
+    path: 'events/:eventId',
+    pathMatch: 'full',
+    redirectTo: '/events/:eventId/climbers'
+  },
+  {
     path: 'events/:eventId/climbers',
     component: ClimbersPageComponent
   },
