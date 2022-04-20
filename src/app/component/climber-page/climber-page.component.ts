@@ -14,6 +14,7 @@ export class ClimberPageComponent implements OnInit {
   public climber?: Climber;
   public eventName?: string;
   public eventColor?: string;
+  public eventLabels?: string[];
   public eventBoulders?: number;
   public eventActive?: boolean;
   public boulders?: number[];
@@ -37,6 +38,7 @@ export class ClimberPageComponent implements OnInit {
         .subscribe(event => {
           this.eventName = event.name;
           this.eventColor = event.options.metadata['color'];
+          this.eventLabels = event.options.metadata['boulderLabels'];
           this.eventBoulders = event.options.boulders;
           this.eventActive = event.active;
           this.climber = event.climbers.find(c => c.id === climberId);
@@ -83,5 +85,15 @@ export class ClimberPageComponent implements OnInit {
     var g = parseInt(color.substring(2, 4), 16);
     var b = parseInt(color.substring(4, 6), 16);
     return (((r * 0.299) + (g * 0.587) + (b * 0.114)) > 186) ? 'black' : 'white';
+  }
+
+  getBoulderLabel(index: number): string {
+    if (this.eventLabels) {
+      if (index <= this.eventLabels.length) {
+        return this.eventLabels[index];
+      }
+    }
+
+    return (index + 1).toString();
   }
 }

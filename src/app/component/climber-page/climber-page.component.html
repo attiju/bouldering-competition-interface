@@ -13,7 +13,7 @@
           <li *ngFor="let index of boulders" (click)="onBoulderClick(index)">
             <div class="bg-white shadow rounded-2xl aspect-square flex justify-center items-center text-2xl transition duration-300 cursor-pointer select-none"
                  [style]="{ backgroundColor: isBoulderValidated(index) ? adjust(eventColor, 80) : 'white', color: pickTextColorBasedOnBgColorSimple(isBoulderValidated(index) ? adjust(eventColor, 80) : '#FFFFFF') }">
-              {{ index + 1 }}
+              {{ getBoulderLabel(index) }}
             </div>
           </li>
         </ul>

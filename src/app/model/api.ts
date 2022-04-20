@@ -7,7 +7,7 @@ export interface Event {
 
 export interface EventOptions {
   boulders: number,
-  metadata: { [key: string]: string },
+  metadata: { [key: string]: any },
 }
 
 export interface EventDetails extends Event {
