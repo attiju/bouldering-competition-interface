@@ -12,8 +12,7 @@ import {Subscription, timer} from "rxjs";
 export class ClimbersPageComponent implements OnInit, OnDestroy {
 
   public event?: EventDetails;
-  public females?: Climber[];
-  public males?: Climber[];
+  public climbers?: Climber[];
   public eventColor?: string;
   public eventPolling?: Subscription;
 
@@ -32,19 +31,12 @@ export class ClimbersPageComponent implements OnInit, OnDestroy {
       this.api.getEventDetails(eventId)
         .subscribe(event => {
           this.event = event;
-
-          const sort = (a: Climber, b: Climber) => {
-            const result = a.lastname.localeCompare(b.lastname);
-            return result !== 0 ? result : a.firstname.localeCompare(b.firstname);
-          };
-
-          this.females = this.event.climbers
-            .filter(climber => climber.gender === Gender.FEMALE)
-            .sort(sort);
-          this.males = this.event.climbers
-            .filter(climber => climber.gender === Gender.MALE)
-            .sort(sort);
-          this.eventColor = this.event.options.metadata['color'];
+          this.climbers = this.event.climbers
+            .sort((a: Climber, b: Climber) => {
+              const result = a.lastname.localeCompare(b.lastname);
+              return result !== 0 ? result : a.firstname.localeCompare(b.firstname);
+            });
+          this.eventColor = this.event.color;
         }, error => {
           this.router.navigate(['/events']);
         });
@@ -57,5 +49,13 @@ export class ClimbersPageComponent implements OnInit, OnDestroy {
 
   onClimberClick(climber: Climber): void {
     this.router.navigate([ '/events', climber.eventId, 'climbers', climber.id ]);
+  }
+
+  numberOfTop(climber: Climber): number {
+    return climber.boulders.filter(boulder => boulder.validateTop).length;
+  }
+
+  numberOfZone(climber: Climber): number {
+    return climber.boulders.filter(boulder => boulder.validateZone).length;
   }
 }

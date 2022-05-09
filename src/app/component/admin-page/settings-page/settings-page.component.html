@@ -1,22 +1,25 @@
 <div class="w-full h-full">
 
-
   <h1 class="text-4xl font-bold text-gray-500 mb-16 text-center m-4">Paramètres</h1>
 
   <ng-container *ngIf="event">
     <div class="flex flex-col gap-8 m-4">
-      <div class="w-full" style="">
-        <div class="text-lg font-bold text-gray-500">Nombre de blocs</div>
-        <ngx-slider [value]="event.options.boulders" [options]="{ floor: 0, ceil: 100 }" (userChangeEnd)="onBouldersCountChange($event)"></ngx-slider>
-      </div>
-
       <div class="text-lg font-bold text-gray-500">Commencer ?</div>
+
       <div class="flex justify-between items-center w-44 cursor-pointer" (click)="switchEventStatus()">
         <div class="text-md font-bold text-gray-500">Arrété</div>
         <div class="w-12 h-6 flex items-center bg-gray-300 rounded-full p-1 transition" [ngClass]="{  'bg-blue-400': event.active  }">
           <div class="bg-white w-5 h-5 rounded-full shadow-md transform transition" [ngClass]="{ 'translate-x-5': event.active }"></div>
         </div>
         <div class="text-md font-bold text-gray-500">En cours</div>
+      </div>
+
+      <br>
+
+      <div class="text-lg font-bold text-gray-500">Paramétrage des blocs</div>
+
+      <div class="w-full">
+        TODO
       </div>
     </div>
 

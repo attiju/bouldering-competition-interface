@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {Climber, EventDetails, Gender} from "../../model/api";
+import {Component, OnInit} from '@angular/core';
+import {Climber, ClimberBoulder, EventDetails, EventOptionsBoulder, Gender} from "../../model/api";
 import {Subscription, timer} from "rxjs";
 import {ApiService} from "../../service/api.service";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -14,10 +14,8 @@ export class ClimberPageComponent implements OnInit {
   public climber?: Climber;
   public eventName?: string;
   public eventColor?: string;
-  public eventLabels?: string[];
-  public eventBoulders?: number;
+  public eventBoulders?: EventOptionsBoulder[];
   public eventActive?: boolean;
-  public boulders?: number[];
   public polling?: Subscription;
 
   constructor(
@@ -32,51 +30,65 @@ export class ClimberPageComponent implements OnInit {
     const eventId = this.route.snapshot.params['eventId'];
     const climberId = this.route.snapshot.params['climberId'];
 
-    this.polling = timer(0, 1000)
+    this.polling = timer(0, 10000)
       .subscribe(() => {
-      this.api.getEventDetails(eventId)
-        .subscribe(event => {
-          this.eventName = event.name;
-          this.eventColor = event.options.metadata['color'];
-          this.eventLabels = event.options.metadata['boulderLabels'];
-          this.eventBoulders = event.options.boulders;
-          this.eventActive = event.active;
-          this.climber = event.climbers.find(c => c.id === climberId);
-          this.boulders = [...Array(this.eventBoulders).keys()];
+        this.api.getEventDetails(eventId)
+          .subscribe(event => {
+            this.eventName = event.name;
+            this.eventColor = event.color;
+            this.eventActive = event.active;
+            this.climber = event.climbers.find(c => c.id === climberId);
+            this.eventBoulders = event.options.boulders;
 
-          if (!this.climber) {
-            this.router.navigate(['/events', eventId, 'climbers']);
-          }
-        });
-    });
+            if (!this.climber) {
+              this.router.navigate(['/events', eventId, 'climbers']);
+            }
+          });
+      });
   }
 
   ngOnDestroy(): void {
     this.polling?.unsubscribe();
   }
 
-  onBoulderClick(index: number): void {
+  onBoulderTopClick(index: number): void {
+    if (this.climber && this.eventActive && this.eventBoulders) {
+      this.climber.boulders[index].validateTop = !this.climber.boulders[index].validateTop;
 
-    if (this.climber && this.eventActive) {
-      let toUpdate = this.climber.boulders;
-      if (this.isBoulderValidated(index)) {
-        toUpdate = toUpdate.filter(boulder => boulder !== index);
-      } else {
-        toUpdate.push(index);
+      if (this.eventBoulders[index].hasZone && this.climber.boulders[index].validateTop) {
+        this.climber.boulders[index].validateZone = true;
       }
 
-      this.api.updateClimber(this.climber.eventId, this.climber.id, { boulders: toUpdate }).subscribe(climber => {
+      this.api.updateClimber(this.climber.eventId, this.climber.id, { boulders: this.climber.boulders }).subscribe(climber => {
         this.climber = climber;
       });
     }
   }
 
-  isBoulderValidated(index: number) {
-    return this.climber!.boulders.includes(index);
+  onBoulderZoneClick(index: number): void {
+    if (this.climber && this.eventActive) {
+      this.climber.boulders[index].validateZone = !this.climber.boulders[index].validateZone;
+
+      if (!this.climber.boulders[index].validateZone) {
+        this.climber.boulders[index].validateTop = false;
+      }
+
+      this.api.updateClimber(this.climber.eventId, this.climber.id, { boulders: this.climber.boulders }).subscribe(climber => {
+        this.climber = climber;
+      });
+    }
   }
 
-  adjust(color: string, amount:number) {
-    return '#' + color.replace(/^#/, '').replace(/../g, color => ('0'+Math.min(255, Math.max(0, parseInt(color, 16) + amount)).toString(16)).substr(-2));
+  isBoulderTopValidated(index: number): boolean {
+    return this.climber!.boulders[index].validateTop;
+  }
+
+  isBoulderZoneValidated(index: number): boolean {
+    return this.climber!.boulders[index].validateZone;
+  }
+
+  adjust(color: string, amount: number) {
+    return '#' + color.replace(/^#/, '').replace(/../g, color => ('0' + Math.min(255, Math.max(0, parseInt(color, 16) + amount)).toString(16)).substr(-2));
   }
 
   pickTextColorBasedOnBgColorSimple(bgColor: string): string {
@@ -88,12 +100,14 @@ export class ClimberPageComponent implements OnInit {
   }
 
   getBoulderLabel(index: number): string {
-    if (this.eventLabels) {
-      if (index <= this.eventLabels.length) {
-        return this.eventLabels[index];
+    if (this.eventBoulders) {
+      const label = this.eventBoulders[index].label;
+
+      if (label) {
+        return label;
       }
     }
 
-    return (index + 1).toString();
+    return 'B' + (index + 1).toString();
   }
 }

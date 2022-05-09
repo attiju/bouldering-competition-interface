@@ -23,12 +23,6 @@ export class SettingsPageComponent implements OnInit {
     this.service.event.subscribe(event => this.event = event);
   }
 
-  public onBouldersCountChange(evt: any): void {
-    if (this.event) {
-      this.api.updateEvent(this.event.id, { boulders: evt.value }).subscribe(() => this.service.loadEvent(this.event!.id));
-    }
-  }
-
   public switchEventStatus(): void {
     if (this.event) {
       this.api.updateEvent(this.event.id, { active: !this.event.active} ).subscribe(() => this.service.loadEvent(this.event!.id));

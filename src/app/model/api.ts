@@ -1,13 +1,18 @@
 export interface Event {
   id: string,
   name: string,
+  color: string,
   active: boolean,
   options: EventOptions;
 }
 
 export interface EventOptions {
-  boulders: number,
-  metadata: { [key: string]: any },
+  boulders: EventOptionsBoulder[],
+}
+
+export interface EventOptionsBoulder {
+  label: string,
+  hasZone: boolean
 }
 
 export interface EventDetails extends Event {
@@ -20,7 +25,12 @@ export interface Climber {
   firstname: string,
   lastname: string,
   gender: Gender
-  boulders: number[]
+  boulders: ClimberBoulder[]
+}
+
+export interface ClimberBoulder {
+  validateTop: boolean,
+  validateZone: boolean
 }
 
 export enum Gender {
@@ -52,7 +62,8 @@ export interface EventRequest {
 
 export interface EventUpdateRequest {
   active?: boolean,
-  boulders?: number,
+  color?: string,
+  boulders?: EventOptionsBoulder[],
 }
 
 export interface ClimberRequest {
@@ -62,5 +73,5 @@ export interface ClimberRequest {
 }
 
 export interface ClimberUpdateRequest {
-  boulders: number[]
+  boulders: ClimberBoulder[]
 }

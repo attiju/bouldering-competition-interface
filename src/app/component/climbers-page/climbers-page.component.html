@@ -9,25 +9,13 @@
 
     <div class="absolute top-36 bottom-0 left-0 right-0 overflow-auto pt-4">
       <ul>
-        <li *ngFor="let climber of males" (click)="onClimberClick(climber)">
+        <li *ngFor="let climber of climbers" (click)="onClimberClick(climber)">
           <div class="bg-white shadow-sm rounded-xl mx-8 md:mx-32 overflow-hidden mb-2 relative border cursor-pointer select-none">
             <div class="flex flex-row">
               <div class="flex-1 flex items-center">
                 <div class="px-8 py-2 flex flex-row justify-between w-full items-center">
                   <div class="text-lg font-semibold">{{ climber.firstname | titlecase }} {{ climber.lastname | uppercase }}</div>
-                  <div class="text-sm">{{ climber.boulders.length }} / {{ event.options.boulders }}</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </li>
-        <li *ngFor="let climber of females" (click)="onClimberClick(climber)">
-          <div class="bg-white shadow-sm rounded-xl mx-8 md:mx-32 overflow-hidden mb-2 relative border cursor-pointer select-none">
-            <div class="flex flex-row">
-              <div class="flex-1 flex items-center">
-                <div class="px-8 py-2 flex flex-row justify-between w-full items-center">
-                  <div class="text-lg font-semibold">{{ climber.firstname | titlecase }} {{ climber.lastname | uppercase }}</div>
-                  <div class="text-sm">{{ climber.boulders.length }} / {{ event.options.boulders }}</div>
+                  <div class="text-sm">{{ numberOfTop(climber) }}T {{ numberOfZone(climber) }}Z</div>
                 </div>
               </div>
             </div>
