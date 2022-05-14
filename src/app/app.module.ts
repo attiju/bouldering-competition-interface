@@ -11,7 +11,7 @@ import { ClimberPageComponent } from './component/climber-page/climber-page.comp
 import { ClimberListPageComponent } from './component/admin-page/climber-list-page/climber-list-page.component';
 import { SettingsPageComponent } from './component/admin-page/settings-page/settings-page.component';
 import { UserRegistrationFormComponent } from './component/admin-page/user-registration-form/user-registration-form.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
 
 @NgModule({
@@ -25,13 +25,14 @@ import { NgxSliderModule } from '@angular-slider/ngx-slider';
     SettingsPageComponent,
     UserRegistrationFormComponent,
   ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
-    NgxSliderModule
-  ],
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        AppRoutingModule,
+        ReactiveFormsModule,
+        NgxSliderModule,
+        FormsModule
+    ],
   providers: [
 
   ],

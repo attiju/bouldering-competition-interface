@@ -1,4 +1,4 @@
-<div class="w-full h-full">
+<div class="w-full h-full overflow-auto">
 
   <h1 class="text-4xl font-bold text-gray-500 mb-16 text-center m-4">Paramètres</h1>
 
@@ -19,7 +19,27 @@
       <div class="text-lg font-bold text-gray-500">Paramétrage des blocs</div>
 
       <div class="w-full">
-        TODO
+        <div class="flex flex-row gap-4">
+          <button (click)="addBoulder()" class="bg-orange-400 px-4 py-2 rounded text-white shadow transition hover:shadow-md">Ajouter un bloc</button>
+          <button (click)="removeBoulder()" class="bg-red-400 px-4 py-2 rounded text-white shadow transition hover:shadow-md">Retirer un bloc</button>
+          <button [disabled]="!changeDetected" (click)="saveChanges()" class="disabled:opacity-75 disabled:bg-gray-300 disabled:shadow-none bg-blue-400 px-4 py-2 rounded text-white shadow transition hover:shadow-md">Sauvegarder les changements</button>
+        </div>
+
+        <div class="flex flex-col rounded-xl bg-gradient-to-b from-gray-100 to-gray-50 mt-8 shadow overflow-hidden" style="width: 200px;">
+          <div class="px-8 py-2 shadow bg-white">
+            <div class="flex flex-row font-bold">
+              <div class="flex flex-1 justify-center items-center">Bloc</div>
+              <div class="flex flex-1 justify-center items-center">Zone/Top</div>
+            </div>
+          </div>
+
+          <div class="px-8 py-2" style="max-height: 400px; overflow:auto;">
+            <div *ngFor="let boulder of event.options.boulders; let i = index" class="flex flex-row">
+              <div class="flex flex-1 justify-center items-center">{{ boulder.label }}</div>
+              <div class="flex flex-1 justify-center items-center"><input class="cursor-pointer" type="checkbox" (click)="changeDetected = true" [(ngModel)]="boulder.hasZone"></div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
