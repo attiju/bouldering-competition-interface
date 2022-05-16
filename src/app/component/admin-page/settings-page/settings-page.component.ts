@@ -34,7 +34,7 @@ export class SettingsPageComponent implements OnInit {
 
   public addBoulder(): void {
     const boulders = this.event!.options.boulders;
-    boulders.push({label: 'B' + (boulders.length + 1), hasZone: false});
+    boulders.push({label: '' + (boulders.length + 1), hasZone: false});
     this.changeDetected = true;
   }
 
