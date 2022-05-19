@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {ApiService} from "../../service/api.service";
-import {Climber, EventDetails, Gender} from "../../model/api";
+import {Climber, EventDetails} from "../../model/api";
 import {Subscription, timer} from "rxjs";
 
 @Component({

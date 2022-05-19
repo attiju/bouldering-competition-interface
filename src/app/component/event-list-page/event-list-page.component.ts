@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ApiService} from "../../service/api.service";
 import {Event} from "../../model/api";
 import {Router} from "@angular/router";

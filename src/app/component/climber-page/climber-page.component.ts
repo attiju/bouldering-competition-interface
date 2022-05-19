@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Climber, ClimberBoulder, EventDetails, EventOptionsBoulder, Gender} from "../../model/api";
+import {Climber, EventOptionsBoulder} from "../../model/api";
 import {Subscription, timer} from "rxjs";
 import {ApiService} from "../../service/api.service";
 import {ActivatedRoute, Router} from "@angular/router";

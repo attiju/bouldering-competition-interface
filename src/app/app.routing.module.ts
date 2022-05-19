@@ -1,11 +1,12 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 import {ClimbersPageComponent} from "./component/climbers-page/climbers-page.component";
 import {AdminPageComponent} from "./component/admin-page/admin-page.component";
 import {EventListPageComponent} from "./component/event-list-page/event-list-page.component";
 import {ClimberPageComponent} from "./component/climber-page/climber-page.component";
 import {ClimberListPageComponent} from "./component/admin-page/climber-list-page/climber-list-page.component";
 import {SettingsPageComponent} from "./component/admin-page/settings-page/settings-page.component";
+import {LeaderboardsPageComponent} from "./component/leaderboards-page/leaderboards-page.component";
 
 const routes: Routes = [
   {
@@ -39,6 +40,10 @@ const routes: Routes = [
   {
     path: 'events/:eventId/climbers',
     component: ClimbersPageComponent
+  },
+  {
+    path: 'events/:eventId/leaderboards',
+    component: LeaderboardsPageComponent
   },
   {
     path: 'events/:eventId/climbers/:climberId',

@@ -10,6 +10,9 @@
       <button class="w-full p-4 cursor-pointer transition hover:scale-125" (click)="downloadLeaderboards()">
         <img src="assets/leaderboard.svg" class="w-full" alt="">
       </button>
+      <button class="w-full font-bold p-4 cursor-pointer transition hover:scale-125" [routerLink]="[ '/events', event.id, 'leaderboards' ]" [routerLinkActive]="'scale-110 animate-pulse'">
+        LIVE
+      </button>
     </div>
     <div class="h-full flex-1">
       <router-outlet></router-outlet>

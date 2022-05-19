@@ -1,8 +1,7 @@
 import {Injectable} from '@angular/core';
 import {ApiService} from "../../service/api.service";
-import {ActivatedRoute} from "@angular/router";
-import {Event, EventDetails} from "../../model/api";
-import {BehaviorSubject, Subject, Subscription} from "rxjs";
+import {EventDetails} from "../../model/api";
+import {BehaviorSubject} from "rxjs";
 
 @Injectable({
   providedIn: 'root'

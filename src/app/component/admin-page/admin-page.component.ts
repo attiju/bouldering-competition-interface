@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {EventDetails, Leaderboard} from "../../model/api";
 
 import {AdminService} from "./admin.service";
