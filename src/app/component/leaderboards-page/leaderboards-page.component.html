@@ -1,28 +1,28 @@
-<div *ngIf="event" class="page relative text-xl">
+<div style="background: black" *ngIf="event" class="page relative text-xl">
 
   <ng-container *ngIf="leaderboard">
 
     <div class="h-full flex md:flex-row flex-col">
-      <div class="flex-1 flex-col flex m-8 shadow rounded-xl bg-gray-400 overflow-hidden">
-        <div class="px-8 py-6 flex justify-center items-center font-bold text-xl bg-gray-500 text-white">Hommes</div>
+      <div class="flex-1 flex-col flex m-8 shadow rounded-xl bg-gray-800 overflow-hidden">
+        <div class="px-8 py-6 flex justify-center items-center font-bold text-xl bg-gray-800 text-white">Hommes</div>
 
         <div class="flex-1 overflow-auto">
           <div *ngFor="let climber of leaderboard.maleLeaderboard.climbers; let index = index">
             <div class="flex flex-row justify-between items-center px-6 py-2" [ngClass]="(index % 2 === 0) ? 'bg-gray-200' : 'bg-gray-100'">
-              <div class="flex-1 font-semibold text-sm">[{{index + 1}}] {{ climber.firstname | titlecase }} {{ climber.lastname | uppercase }}</div>
+              <div class="flex-1 font-semibold text-sm">{{ climber.firstname | titlecase }} {{ climber.lastname | uppercase }}</div>
               <div class="font-bold text-sm">{{ climber.score | number : '1.0-0' }}</div>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="flex-1 flex-col flex m-8 shadow rounded-xl bg-gray-400 overflow-hidden">
-        <div class="px-8 py-6 flex justify-center items-center font-bold text-xl bg-gray-500 text-white">Femmes</div>
+      <div class="flex-1 flex-col flex m-8 shadow rounded-xl bg-gray-800 overflow-hidden">
+        <div class="px-8 py-6 flex justify-center items-center font-bold text-xl bg-gray-800 text-white">Femmes</div>
 
         <div class="flex-1 overflow-auto">
           <div *ngFor="let climber of leaderboard.femaleLeaderboard.climbers; let index = index">
             <div class="flex flex-row justify-between items-center px-6 py-2" [ngClass]="(index % 2 === 0) ? 'bg-gray-200' : 'bg-gray-100'">
-              <div class="w-64 font-semibold  text-sm">[{{index + 1}}] {{ climber.firstname | titlecase }} {{ climber.lastname | uppercase }}</div>
+              <div class="w-64 font-semibold  text-sm">{{ climber.firstname | titlecase }} {{ climber.lastname | uppercase }}</div>
               <div class="font-bold text-sm">{{ climber.score | number : '1.0-0' }}</div>
             </div>
           </div>
