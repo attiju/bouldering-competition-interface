@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AdminService} from "../admin.service";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
 import {Gender} from "../../../model/api";
 import {ActivatedRoute} from "@angular/router";
 import {ApiService} from "../../../service/api.service";
@@ -12,11 +12,11 @@ import {ApiService} from "../../../service/api.service";
 })
 export class UserRegistrationFormComponent implements OnInit {
 
-  public form?: FormGroup;
+  public form?: UntypedFormGroup;
 
   constructor(
     private service: AdminService,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private route: ActivatedRoute,
     private api: ApiService,
   ) {

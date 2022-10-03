@@ -41,4 +41,12 @@ export class ClimberListPageComponent implements OnInit {
       this.service.loadEvent(climber.eventId);
     });
   }
+
+  public open = false;
+  public url: string = '';
+
+  public onQrCode(climber: Climber): void {
+    this.open = true;
+    this.url = `${window.location.origin}/events/${this.event!.id}/climbers/${climber.id}`;
+  }
 }

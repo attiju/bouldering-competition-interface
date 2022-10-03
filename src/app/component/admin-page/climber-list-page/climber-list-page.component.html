@@ -2,38 +2,49 @@
   <ul *ngIf="event" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 p-4">
     <li *ngFor="let climber of eventMaleClimbers">
       <div class="gap-2 px-4 py-4 rounded-2xl shadow">
-        <div class="flex flex-row items-center  gap-2 px-4 py-4 rounded-2xl">
+        <div class="flex flex-row items-center justify-between gap-2 px-4 py-4 rounded-2xl">
           <div [ngClass]="climber.gender === 'MALE' ? 'bg-blue-600' : 'bg-pink-600'"
                class="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold opacity-50">
             {{ climber.lastname[0] | uppercase }}{{ climber.firstname[0] | uppercase }}
           </div>
-          <div class="flex-1 font-semibold">{{ climber.firstname | titlecase }} {{ climber.lastname | uppercase }}</div>
+          <div class="flex-1 font-semibold text-right">{{ climber.firstname | titlecase }} {{ climber.lastname | uppercase }}</div>
+        </div>
+        <div class="flex flex-row items-center justify-between gap-2 px-4 py-4 rounded-2xl">
+          <div><qrcode class="cursor-pointer" (click)="onQrCode(climber)" [qrdata]="climber.id" [width]="40"></qrcode></div>
           <div
             (click)="removeClimber(climber)"
             class="cursor-pointer font-bold text-red-500 bg-red-50 w-8 h-8 text-center rounded-full flex flex-row justify-center items-center">
             <img alt="" class="w-4" src="assets/trash.svg">
           </div>
         </div>
-        <div class="flex flex-row items-center  gap-2 px-4 py-4 rounded-2xl">
-          <qrcode [qrdata]="'myAngularxQrCode'" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
-        </div>
       </div>
-
     </li>
+
     <li *ngFor="let climber of eventFemaleClimbers">
-      <div class="flex flex-row items-center gap-2 px-4 py-4 rounded-2xl shadow">
-        <div [ngClass]="climber.gender === 'MALE' ? 'bg-blue-600' : 'bg-pink-600'"
-             class="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold opacity-50">
-          {{ climber.firstname[0] | uppercase }}{{ climber.lastname[0] | uppercase }}
+      <div class="gap-2 px-4 py-4 rounded-2xl shadow">
+        <div class="flex flex-row items-center justify-between gap-2 px-4 py-4 rounded-2xl">
+          <div [ngClass]="climber.gender === 'MALE' ? 'bg-blue-600' : 'bg-pink-600'"
+               class="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold opacity-50">
+            {{ climber.lastname[0] | uppercase }}{{ climber.firstname[0] | uppercase }}
+          </div>
+          <div class="flex-1 font-semibold text-right">{{ climber.firstname | titlecase }} {{ climber.lastname | uppercase }}</div>
         </div>
-        <div class="flex-1 font-semibold">{{ climber.firstname | titlecase }} {{ climber.lastname | uppercase }}</div>
-        <div
-          (click)="removeClimber(climber)"
-          class="cursor-pointer font-bold text-red-500 bg-red-50 w-8 h-8 text-center rounded-full flex flex-row justify-center items-center">
-          <img alt="" class="w-4" src="assets/trash.svg">
+        <div class="flex flex-row items-center justify-between gap-2 px-4 py-4 rounded-2xl">
+          <div><qrcode class="cursor-pointer" (click)="onQrCode(climber)" [qrdata]="climber.id" [width]="40"></qrcode></div>
+          <div
+            (click)="removeClimber(climber)"
+            class="cursor-pointer font-bold text-red-500 bg-red-50 w-8 h-8 text-center rounded-full flex flex-row justify-center items-center">
+            <img alt="" class="w-4" src="assets/trash.svg">
+          </div>
         </div>
       </div>
     </li>
   </ul>
 
+</div>
+
+<div class="flex justify-center items-center absolute top-0 bottom-0 left-0 right-0 bg-gray-500 cursor-pointer bg-opacity-70" (click)="open = false" *ngIf="open">
+  <div class="rounded-xl overflow-hidden shadow-2xl">
+    <qrcode class="cursor-pointer" [qrdata]="url" [width]="256" [elementType]="'url'" [errorCorrectionLevel]="'L'"></qrcode>
+  </div>
 </div>
