@@ -47,6 +47,6 @@ export class ClimberListPageComponent implements OnInit {
 
   public onQrCode(climber: Climber): void {
     this.open = true;
-    this.url = `${window.location.origin}/events/${this.event!.id}/climbers/${climber.id}`;
+    this.url = `${window.location.origin}/events/${climber.eventId}/climbers/${climber.id}`;
   }
 }

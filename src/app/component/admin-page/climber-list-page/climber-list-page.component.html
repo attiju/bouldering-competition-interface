@@ -11,6 +11,7 @@
         </div>
         <div class="flex flex-row items-center justify-between gap-2 px-4 py-4 rounded-2xl">
           <div><qrcode class="cursor-pointer" (click)="onQrCode(climber)" [qrdata]="climber.id" [width]="40"></qrcode></div>
+          <div><img [routerLink]="['/', 'events', climber.eventId, 'climbers', climber.id]" alt="" style="height: 40px" class="w-full cursor-pointer" src="assets/ranking.svg"></div>
           <div
             (click)="removeClimber(climber)"
             class="cursor-pointer font-bold text-red-500 bg-red-50 w-8 h-8 text-center rounded-full flex flex-row justify-center items-center">
@@ -31,6 +32,7 @@
         </div>
         <div class="flex flex-row items-center justify-between gap-2 px-4 py-4 rounded-2xl">
           <div><qrcode class="cursor-pointer" (click)="onQrCode(climber)" [qrdata]="climber.id" [width]="40"></qrcode></div>
+          <div><img [routerLink]="['/', 'events', climber.eventId, 'climbers', climber.id]" alt="" style="height: 40px" class="w-full cursor-pointer" src="assets/ranking.svg"></div>
           <div
             (click)="removeClimber(climber)"
             class="cursor-pointer font-bold text-red-500 bg-red-50 w-8 h-8 text-center rounded-full flex flex-row justify-center items-center">
