@@ -20,7 +20,8 @@ export class AdminPageComponent implements OnInit {
     private service: AdminService,
     private route: ActivatedRoute,
     private api: ApiService,
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     const eventId = this.route.snapshot.params['eventId'];
@@ -44,6 +45,6 @@ export class AdminPageComponent implements OnInit {
       .map((user, index) => `${index + 1};${user.firstname};${user.lastname};${Math.round(user.score)};`)
       .join('\n');
 
-    saveAs(new Blob(['\uFEFF' + headers + '\n' + content], { type: 'text/csv;charset=utf-8'}), name);
+    saveAs(new Blob(['\uFEFF' + headers + '\n' + content], {type: 'text/csv;charset=utf-8'}), name);
   }
 }

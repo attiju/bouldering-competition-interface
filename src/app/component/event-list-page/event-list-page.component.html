@@ -1,5 +1,6 @@
 <div class="page relative">
-  <div class="absolute w-screen h-36 bg-gradient-to-tr from-black to-black shadow flex justify-center items-center rounded-b-2xl">
+  <div
+    class="absolute w-screen h-36 bg-gradient-to-tr from-black to-black shadow flex justify-center items-center rounded-b-2xl">
     <div class="text-center text-white text-4xl font-bold">
       CONTESTS
     </div>
@@ -7,9 +8,10 @@
 
   <div class="absolute top-36 bottom-0 left-0 right-0 overflow-auto pt-4">
     <ul *ngIf="events">
-      <li *ngFor="let event of events" (click)="onEventClick(event.id, $event)">
+      <li (click)="onEventClick(event.id, $event)" *ngFor="let event of events">
         <div class="bg-white shadow-sm rounded-xl mx-8 md:mx-32 overflow-hidden mb-4 relative border cursor-pointer">
-          <div class="absolute top-4 right-4 rounded-full w-2 h-2 animate-pulse" [ngClass]="event.active ? 'bg-green-300' : 'bg-orange-300'"></div>
+          <div [ngClass]="event.active ? 'bg-green-300' : 'bg-orange-300'"
+               class="absolute top-4 right-4 rounded-full w-2 h-2 animate-pulse"></div>
           <div class="flex flex-row">
             <div class="flex-1 flex items-center h-36">
               <div class="pl-8">

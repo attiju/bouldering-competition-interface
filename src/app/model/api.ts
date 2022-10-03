@@ -34,8 +34,8 @@ export interface ClimberBoulder {
 }
 
 export enum Gender {
-  MALE= 'MALE',
-  FEMALE='FEMALE'
+  MALE = 'MALE',
+  FEMALE = 'FEMALE'
 }
 
 export interface Leaderboards {

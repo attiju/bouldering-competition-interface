@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ApiService} from "../../service/api.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {Climber, EventDetails, Leaderboards} from "../../model/api";
+import {EventDetails, Leaderboards} from "../../model/api";
 import {Subscription, timer} from "rxjs";
 import {Location} from "@angular/common";
 
@@ -30,11 +30,11 @@ export class LeaderboardsPageComponent implements OnInit, OnDestroy {
     const eventId = this.route.snapshot.params['eventId'];
 
     this.api.getEventDetails(eventId).subscribe(event => {
-        this.event = event;
-        this.eventColor = this.event.color;
-      }, error => {
-        this.router.navigate(['/events']);
-      });
+      this.event = event;
+      this.eventColor = this.event.color;
+    }, error => {
+      this.router.navigate(['/events']);
+    });
 
     this.eventPolling = timer(0, 5000).subscribe(() => {
       this.api.generateLeaderboards(eventId)

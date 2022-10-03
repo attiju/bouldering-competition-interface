@@ -25,9 +25,9 @@ export class UserRegistrationFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      firstname: [ '', Validators.required ],
-      lastname: [ '', Validators.required ],
-      gender: [ Gender.MALE, Validators.required ]
+      firstname: ['', Validators.required],
+      lastname: ['', Validators.required],
+      gender: [Gender.MALE, Validators.required]
     });
   }
 
@@ -41,9 +41,9 @@ export class UserRegistrationFormComponent implements OnInit {
       });
 
       this.form = this.fb.group({
-        firstname: [ '', Validators.required ],
-        lastname: [ '', Validators.required ],
-        gender: [ Gender.MALE, Validators.required ]
+        firstname: ['', Validators.required],
+        lastname: ['', Validators.required],
+        gender: [Gender.MALE, Validators.required]
       });
     }
   }

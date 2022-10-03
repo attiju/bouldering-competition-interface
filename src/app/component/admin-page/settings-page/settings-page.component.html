@@ -6,10 +6,12 @@
     <div class="flex flex-col gap-8 m-4">
       <div class="text-lg font-bold text-gray-500">Commencer ?</div>
 
-      <div class="flex justify-between items-center w-44 cursor-pointer" (click)="switchEventStatus()">
+      <div (click)="switchEventStatus()" class="flex justify-between items-center w-44 cursor-pointer">
         <div class="text-md font-bold text-gray-500">Arrété</div>
-        <div class="w-12 h-6 flex items-center bg-gray-300 rounded-full p-1 transition" [ngClass]="{  'bg-blue-400': event.active  }">
-          <div class="bg-white w-5 h-5 rounded-full shadow-md transform transition" [ngClass]="{ 'translate-x-5': event.active }"></div>
+        <div [ngClass]="{  'bg-blue-400': event.active  }"
+             class="w-12 h-6 flex items-center bg-gray-300 rounded-full p-1 transition">
+          <div [ngClass]="{ 'translate-x-5': event.active }"
+               class="bg-white w-5 h-5 rounded-full shadow-md transform transition"></div>
         </div>
         <div class="text-md font-bold text-gray-500">En cours</div>
       </div>
@@ -20,12 +22,20 @@
 
       <div class="w-full">
         <div class="flex flex-row gap-4">
-          <button (click)="addBoulder()" class="bg-orange-400 px-4 py-2 rounded text-white shadow transition hover:shadow-md">Ajouter un bloc</button>
-          <button (click)="removeBoulder()" class="bg-red-400 px-4 py-2 rounded text-white shadow transition hover:shadow-md">Retirer un bloc</button>
-          <button [disabled]="!changeDetected" (click)="saveChanges()" class="disabled:opacity-75 disabled:bg-gray-300 disabled:shadow-none bg-blue-400 px-4 py-2 rounded text-white shadow transition hover:shadow-md">Sauvegarder les changements</button>
+          <button (click)="addBoulder()"
+                  class="bg-orange-400 px-4 py-2 rounded text-white shadow transition hover:shadow-md">Ajouter un bloc
+          </button>
+          <button (click)="removeBoulder()"
+                  class="bg-red-400 px-4 py-2 rounded text-white shadow transition hover:shadow-md">Retirer un bloc
+          </button>
+          <button (click)="saveChanges()" [disabled]="!changeDetected"
+                  class="disabled:opacity-75 disabled:bg-gray-300 disabled:shadow-none bg-blue-400 px-4 py-2 rounded text-white shadow transition hover:shadow-md">
+            Sauvegarder les changements
+          </button>
         </div>
 
-        <div class="flex flex-col rounded-xl bg-gradient-to-b from-gray-100 to-gray-50 mt-8 shadow overflow-hidden" style="width: 200px;">
+        <div class="flex flex-col rounded-xl bg-gradient-to-b from-gray-100 to-gray-50 mt-8 shadow overflow-hidden"
+             style="width: 200px;">
           <div class="px-8 py-2 shadow bg-white">
             <div class="flex flex-row font-bold">
               <div class="flex flex-1 justify-center items-center">Bloc</div>
@@ -36,7 +46,9 @@
           <div class="px-8 py-2" style="max-height: 400px; overflow:auto;">
             <div *ngFor="let boulder of event.options.boulders; let i = index" class="flex flex-row">
               <div class="flex flex-1 justify-center items-center">{{ boulder.label }}</div>
-              <div class="flex flex-1 justify-center items-center"><input class="cursor-pointer" type="checkbox" (click)="changeDetected = true" [(ngModel)]="boulder.hasZone"></div>
+              <div class="flex flex-1 justify-center items-center"><input (click)="changeDetected = true" [(ngModel)]="boulder.hasZone"
+                                                                          class="cursor-pointer"
+                                                                          type="checkbox"></div>
             </div>
           </div>
         </div>

@@ -48,7 +48,7 @@ export class ClimbersPageComponent implements OnInit, OnDestroy {
   }
 
   onClimberClick(climber: Climber): void {
-    this.router.navigate([ '/events', climber.eventId, 'climbers', climber.id ]);
+    this.router.navigate(['/events', climber.eventId, 'climbers', climber.id]);
   }
 
   numberOfTop(climber: Climber): number {

@@ -59,7 +59,7 @@ export class ClimberPageComponent implements OnInit {
         this.climber.boulders[index].validateZone = true;
       }
 
-      this.api.updateClimber(this.climber.eventId, this.climber.id, { boulders: this.climber.boulders }).subscribe(climber => {
+      this.api.updateClimber(this.climber.eventId, this.climber.id, {boulders: this.climber.boulders}).subscribe(climber => {
         this.climber = climber;
       });
     }
@@ -73,7 +73,7 @@ export class ClimberPageComponent implements OnInit {
         this.climber.boulders[index].validateTop = false;
       }
 
-      this.api.updateClimber(this.climber.eventId, this.climber.id, { boulders: this.climber.boulders }).subscribe(climber => {
+      this.api.updateClimber(this.climber.eventId, this.climber.id, {boulders: this.climber.boulders}).subscribe(climber => {
         this.climber = climber;
       });
     }

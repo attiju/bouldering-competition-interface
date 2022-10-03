@@ -16,6 +16,7 @@ import {
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {NgxSliderModule} from '@angular-slider/ngx-slider';
 import {LeaderboardsPageComponent} from './component/leaderboards-page/leaderboards-page.component';
+import {QRCodeModule} from "angularx-qrcode";
 
 @NgModule({
   declarations: [
@@ -29,17 +30,16 @@ import {LeaderboardsPageComponent} from './component/leaderboards-page/leaderboa
     UserRegistrationFormComponent,
     LeaderboardsPageComponent,
   ],
-    imports: [
-        BrowserModule,
-        HttpClientModule,
-        AppRoutingModule,
-        ReactiveFormsModule,
-        NgxSliderModule,
-        FormsModule
-    ],
-  providers: [
-
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    NgxSliderModule,
+    FormsModule,
+    QRCodeModule
   ],
+  providers: [],
   bootstrap: [
     AppComponent,
   ],

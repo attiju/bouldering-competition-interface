@@ -17,7 +17,8 @@ export class ClimberListPageComponent implements OnInit {
   constructor(
     private service: AdminService,
     private api: ApiService,
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     this.service.event.subscribe(event => {

@@ -28,9 +28,9 @@ export class EventListPageComponent implements OnInit {
 
   public onEventClick(eventId: string, mouseEvent: MouseEvent): void {
     if (mouseEvent.ctrlKey && mouseEvent.shiftKey) {
-      this.router.navigate([ '/events', eventId, 'admin']);
+      this.router.navigate(['/events', eventId, 'admin']);
     } else {
-      this.router.navigate([ '/events', eventId, 'climbers']);
+      this.router.navigate(['/events', eventId, 'climbers']);
     }
   }
 }

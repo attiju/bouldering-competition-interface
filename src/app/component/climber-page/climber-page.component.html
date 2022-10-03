@@ -1,12 +1,12 @@
 <div class="page relative">
   <ng-container *ngIf="eventName && eventColor && climber">
-    <div class="absolute w-screen h-36 shadow flex justify-center items-center rounded-b-2xl"
-         [ngStyle]="{ backgroundColor: eventColor }">
+    <div [ngStyle]="{ backgroundColor: eventColor }"
+         class="absolute w-screen h-36 shadow flex justify-center items-center rounded-b-2xl">
       <div class="text-center text-white text-4xl font-bold">
         {{ climber.firstname | titlecase }} {{ climber.lastname | uppercase }}
       </div>
-      <div class="absolute top-4 right-4 rounded-full w-4 h-4 animate-pulse"
-           [ngClass]="eventActive ? 'bg-green-300' : 'bg-orange-300'"></div>
+      <div [ngClass]="eventActive ? 'bg-green-300' : 'bg-orange-300'"
+           class="absolute top-4 right-4 rounded-full w-4 h-4 animate-pulse"></div>
     </div>
 
     <ng-container *ngIf="climber">
@@ -18,19 +18,19 @@
             <ng-container *ngIf="boulder.hasZone">
               <div class="bg-white shadow rounded-2xl aspect-square relative overflow-hidden">
                 <div (click)="onBoulderTopClick(index)"
-                     class="absolute top-0 w-full h-1/2 bg-red-400 flex justify-center items-center text-2xl transition duration-300 cursor-pointer select-none"
                      [style]="{
                       backgroundColor: isBoulderTopValidated(index) ? adjust(eventColor, 80) : 'white',
                       color: pickTextColorBasedOnBgColorSimple(isBoulderTopValidated(index) ? adjust(eventColor, 80) : '#FFFFFF')
-                     }">
+                     }"
+                     class="absolute top-0 w-full h-1/2 bg-red-400 flex justify-center items-center text-2xl transition duration-300 cursor-pointer select-none">
                   {{ getBoulderLabel(index) }} (T)
                 </div>
                 <div (click)="onBoulderZoneClick(index)"
-                     class="absolute top-1/2 w-full h-1/2 bg-red-200 flex justify-center items-center text-2xl transition duration-300 cursor-pointer select-none"
                      [style]="{
                       backgroundColor: isBoulderZoneValidated(index) ? adjust(eventColor, 80) : 'white',
                       color: pickTextColorBasedOnBgColorSimple(isBoulderZoneValidated(index) ? adjust(eventColor, 80) : '#FFFFFF')
-                     }">
+                     }"
+                     class="absolute top-1/2 w-full h-1/2 bg-red-200 flex justify-center items-center text-2xl transition duration-300 cursor-pointer select-none">
                   {{ getBoulderLabel(index) }} (Z)
                 </div>
               </div>
@@ -39,11 +39,11 @@
             <!-- if there is no zone -->
             <ng-container *ngIf="!boulder.hasZone">
               <div (click)="onBoulderTopClick(index)"
-                   class="bg-white shadow rounded-2xl aspect-square flex justify-center items-center text-2xl transition duration-300 cursor-pointer select-none"
                    [style]="{
                       backgroundColor: isBoulderTopValidated(index) ? adjust(eventColor, 80) : 'white',
                       color: pickTextColorBasedOnBgColorSimple(isBoulderTopValidated(index) ? adjust(eventColor, 80) : '#FFFFFF')
-                     }">
+                     }"
+                   class="bg-white shadow rounded-2xl aspect-square flex justify-center items-center text-2xl transition duration-300 cursor-pointer select-none">
                 {{ getBoulderLabel(index) }}
               </div>
             </ng-container>

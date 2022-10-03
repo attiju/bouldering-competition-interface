@@ -1,6 +1,5 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {ClimbersPageComponent} from "./component/climbers-page/climbers-page.component";
 import {AdminPageComponent} from "./component/admin-page/admin-page.component";
 import {EventListPageComponent} from "./component/event-list-page/event-list-page.component";
 import {ClimberPageComponent} from "./component/climber-page/climber-page.component";
@@ -32,15 +31,12 @@ const routes: Routes = [
       },
     ]
   },
-  {
-    path: 'events/:eventId',
-    pathMatch: 'full',
-    redirectTo: '/events/:eventId/climbers'
-  },
+  /*
   {
     path: 'events/:eventId/climbers',
     component: ClimbersPageComponent
   },
+  */
   {
     path: 'events/:eventId/leaderboards',
     component: LeaderboardsPageComponent
@@ -60,4 +56,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}
