@@ -11,8 +11,7 @@ import {ApiService} from "../../../service/api.service";
 export class ClimberListPageComponent implements OnInit {
 
   public event?: EventDetails;
-  public eventMaleClimbers?: Climber[];
-  public eventFemaleClimbers?: Climber[];
+  public climbersGroupByFirstLetter?: { [key: string]: Climber[] };
 
   constructor(
     private service: AdminService,
@@ -30,8 +29,7 @@ export class ClimberListPageComponent implements OnInit {
           return result !== 0 ? result : a.firstname.localeCompare(b.firstname);
         };
 
-        this.eventMaleClimbers = this.event.climbers.filter(climber => climber.gender === Gender.MALE).sort(sort);
-        this.eventFemaleClimbers = this.event.climbers.filter(climber => climber.gender === Gender.FEMALE).sort(sort);
+        this.climbersGroupByFirstLetter = this.groupClimbers(this.event.climbers.sort(sort));
       }
     });
   }
@@ -48,5 +46,11 @@ export class ClimberListPageComponent implements OnInit {
   public onQrCode(climber: Climber): void {
     this.open = true;
     this.url = `${window.location.origin}/events/${climber.eventId}/climbers/${climber.id}`;
+  }
+
+  private groupClimbers(climbers: Climber[]): { [key: string]: Climber[] } {
+    const obj: any = {};
+    climbers.forEach(e => obj[e.lastname[0].toLowerCase()] = climbers.filter(ele => ele.lastname[0].toLowerCase() === e.lastname[0].toLowerCase()));
+    return obj;
   }
 }
