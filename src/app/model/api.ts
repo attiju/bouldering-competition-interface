@@ -3,6 +3,7 @@ export interface Event {
   name: string,
   color: string,
   active: boolean,
+  verifyPayment: boolean,
   options: EventOptions;
 }
 
