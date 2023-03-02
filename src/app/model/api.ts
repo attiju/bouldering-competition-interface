@@ -3,7 +3,7 @@ export interface Event {
   name: string,
   color: string,
   active: boolean,
-  verifyPayment: boolean,
+  verifyPayment: boolean | null,
   options: EventOptions;
 }
 
@@ -25,7 +25,8 @@ export interface Climber {
   eventId: string,
   firstname: string,
   lastname: string,
-  gender: Gender
+  gender: Gender,
+  paid: boolean | null,
   boulders: ClimberBoulder[]
 }
 
