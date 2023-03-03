@@ -53,4 +53,16 @@ export class ClimberListPageComponent implements OnInit {
     climbers.forEach(e => obj[e.lastname[0].toLowerCase()] = climbers.filter(ele => ele.lastname[0].toLowerCase() === e.lastname[0].toLowerCase()));
     return obj;
   }
+
+  public setClimberPaid(climber: Climber, paid: boolean) {
+    this.api.updateClimberPaymentStatus(climber.eventId, climber.id, paid).subscribe(() => {
+      this.service.loadEvent(climber.eventId);
+    });
+  }
+
+  public switchClimberGender(climber: Climber) {
+    this.api.updateClimberGender(climber.eventId, climber.id, climber.gender == Gender.MALE ? Gender.FEMALE : Gender.MALE).subscribe(() => {
+      this.service.loadEvent(climber.eventId);
+    });
+  }
 }

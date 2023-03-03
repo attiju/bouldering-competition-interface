@@ -9,7 +9,7 @@ import {
   Event,
   EventDetails,
   EventRequest,
-  EventUpdateRequest,
+  EventUpdateRequest, Gender,
   Leaderboards
 } from "../model/api";
 
@@ -54,6 +54,14 @@ export class ApiService {
 
   public updateClimber(eventId: string, climberId: string, update: ClimberUpdateRequest): Observable<Climber> {
     return this.http.put<Climber>(`${environment.api}/events/${eventId}/climbers/${climberId}`, update);
+  }
+
+  public updateClimberPaymentStatus(eventId: string, climberId: string, paid: boolean): Observable<Climber> {
+    return this.http.put<Climber>(`${environment.api}/events/${eventId}/climbers/${climberId}/information`, { paid });
+  }
+
+  public updateClimberGender(eventId: string, climberId: string, gender: Gender): Observable<Climber> {
+    return this.http.put<Climber>(`${environment.api}/events/${eventId}/climbers/${climberId}/information`, { gender });
   }
 
   public removeClimber(eventId: string, climberId: string): Observable<void> {

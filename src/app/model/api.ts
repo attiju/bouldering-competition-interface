@@ -77,3 +77,4 @@ export interface ClimberRequest {
 export interface ClimberUpdateRequest {
   boulders: ClimberBoulder[]
 }
+
