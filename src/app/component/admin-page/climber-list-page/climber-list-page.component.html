@@ -13,7 +13,7 @@
                      class="w-10 h-10 cursor-pointer rounded-full flex items-center justify-center text-white font-bold opacity-50 hover:shadow-xl">
                   {{ climber.lastname[0] | uppercase }}{{ climber.firstname[0] | uppercase }}
                 </div>
-                <div class="flex-1 font-semibold text-right">{{ climber.firstname | titlecase }} {{ climber.lastname | uppercase }}</div>
+                <div class="flex-1 font-semibold text-right">{{ climber.lastname | uppercase }} {{ climber.firstname | titlecase }}</div>
               </div>
               <div class="flex flex-row items-center justify-between gap-2 px-4 py-4 rounded-2xl">
                 <div><qrcode class="hover:shadow-xl cursor-pointer" (click)="onQrCode(climber)" [qrdata]="climber.id" [width]="40"></qrcode></div>
