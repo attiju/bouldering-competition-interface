@@ -10,26 +10,26 @@
             <div class="gap-2 px-4 py-4 rounded-2xl shadow">
               <div class="flex flex-row items-center justify-between gap-2 px-4 py-4 rounded-2xl">
                 <div [ngClass]="climber.gender === 'MALE' ? 'bg-blue-600' : 'bg-pink-600'" (click)="switchClimberGender(climber)"
-                     class="w-10 h-10 cursor-pointer rounded-full flex items-center justify-center text-white font-bold opacity-50">
+                     class="w-10 h-10 cursor-pointer rounded-full flex items-center justify-center text-white font-bold opacity-50 hover:shadow-xl">
                   {{ climber.lastname[0] | uppercase }}{{ climber.firstname[0] | uppercase }}
                 </div>
                 <div class="flex-1 font-semibold text-right">{{ climber.firstname | titlecase }} {{ climber.lastname | uppercase }}</div>
               </div>
               <div class="flex flex-row items-center justify-between gap-2 px-4 py-4 rounded-2xl">
-                <div><qrcode class="cursor-pointer" (click)="onQrCode(climber)" [qrdata]="climber.id" [width]="40"></qrcode></div>
+                <div><qrcode class="hover:shadow-xl cursor-pointer" (click)="onQrCode(climber)" [qrdata]="climber.id" [width]="40"></qrcode></div>
                 <div><img [routerLink]="['/', 'events', climber.eventId, 'climbers', climber.id]" alt="" style="height: 40px" class="w-full cursor-pointer" src="assets/ranking.svg"></div>
                 <div *ngIf="event && event.verifyPayment">
-                  <div *ngIf="climber.paid" (click)="setClimberPaid(climber, false)" class="cursor-pointer font-bold text-green-500 bg-green-50 w-8 h-8 text-center rounded-full flex flex-row justify-center items-center">
+                  <div *ngIf="climber.paid" (click)="setClimberPaid(climber, false)" class="hover:shadow-xl cursor-pointer font-bold text-green-500 bg-green-50 w-8 h-8 text-center rounded-full flex flex-row justify-center items-center">
                     €
                   </div>
 
-                  <div *ngIf="!climber.paid" (click)="setClimberPaid(climber, true)" class="cursor-pointer font-bold text-red-500 bg-red-50 w-8 h-8 text-center rounded-full flex flex-row justify-center items-center">
+                  <div *ngIf="!climber.paid" (click)="setClimberPaid(climber, true)" class="cursor-pointer hover:shadow-xl font-bold text-red-500 bg-red-50 w-8 h-8 text-center rounded-full flex flex-row justify-center items-center">
                     €
                   </div>
                 </div>
                 <div
                   (click)="removeClimber(climber)"
-                  class="cursor-pointer font-bold text-red-500 bg-red-50 w-8 h-8 text-center rounded-full flex flex-row justify-center items-center">
+                  class="cursor-pointer font-bold text-red-500 hover:shadow-xl bg-red-50 w-8 h-8 text-center rounded-full flex flex-row justify-center items-center">
                   <img alt="" class="w-4" src="assets/trash.svg">
                 </div>
               </div>
