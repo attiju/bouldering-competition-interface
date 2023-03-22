@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {AdminService} from "../admin.service";
 import {ApiService} from "../../../service/api.service";
 import {EventDetails} from "../../../model/api";
@@ -13,6 +13,9 @@ export class SettingsPageComponent implements OnInit {
   public changeDetected: boolean = false;
 
   public event?: EventDetails;
+
+  @Output()
+  public shouldReloadClimbers = new EventEmitter<void>();
 
   constructor(
     private service: AdminService,
@@ -48,6 +51,12 @@ export class SettingsPageComponent implements OnInit {
     this.api.updateEvent(this.event!.id, {boulders: this.event!.options.boulders}).subscribe(event => {
       this.event = event;
       this.changeDetected = false;
+    });
+  }
+
+  public deleteAllClimbers(): void {
+    this.api.removeClimbers(this.event!.id).subscribe(() => {
+      this.service.loadEvent(this.event!.id);
     });
   }
 }

@@ -9,7 +9,8 @@ import {
   Event,
   EventDetails,
   EventRequest,
-  EventUpdateRequest, Gender,
+  EventUpdateRequest,
+  Gender,
   Leaderboards
 } from "../model/api";
 
@@ -30,6 +31,10 @@ export class ApiService {
 
   public createEvent(event: EventRequest): Observable<Event> {
     return this.http.post<Event>(`${environment.api}/events`, event);
+  }
+
+  public getClimberDetails(eventId: string, climberId: string): Observable<Climber> {
+    return this.http.get<Climber>(`${environment.api}/events/${eventId}/climbers`);
   }
 
   public getEventDetails(eventId: string): Observable<EventDetails> {
@@ -57,15 +62,19 @@ export class ApiService {
   }
 
   public updateClimberPaymentStatus(eventId: string, climberId: string, paid: boolean): Observable<Climber> {
-    return this.http.put<Climber>(`${environment.api}/events/${eventId}/climbers/${climberId}/information`, { paid });
+    return this.http.put<Climber>(`${environment.api}/events/${eventId}/climbers/${climberId}/information`, {paid});
   }
 
   public updateClimberGender(eventId: string, climberId: string, gender: Gender): Observable<Climber> {
-    return this.http.put<Climber>(`${environment.api}/events/${eventId}/climbers/${climberId}/information`, { gender });
+    return this.http.put<Climber>(`${environment.api}/events/${eventId}/climbers/${climberId}/information`, {gender});
   }
 
   public removeClimber(eventId: string, climberId: string): Observable<void> {
     return this.http.delete<void>(`${environment.api}/events/${eventId}/climbers/${climberId}`);
+  }
+
+  public removeClimbers(eventId: string): Observable<void> {
+    return this.http.delete<void>(`${environment.api}/events/${eventId}/climbers`);
   }
 
 }

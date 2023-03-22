@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {Climber, EventOptionsBoulder} from "../../model/api";
-import {Subscription, timer} from "rxjs";
 import {ApiService} from "../../service/api.service";
 import {ActivatedRoute, Router} from "@angular/router";
 
@@ -30,21 +29,21 @@ export class ClimberPageComponent implements OnInit {
     const climberId = this.route.snapshot.params['climberId'];
 
     this.api.getEventDetails(eventId)
-        .subscribe(event => {
-            this.eventName = event.name;
-            this.eventColor = event.color;
-            this.eventActive = event.active;
-            this.climber = event.climbers.find(c => c.id === climberId);
-            this.eventBoulders = event.options.boulders;
+      .subscribe(event => {
+        this.eventName = event.name;
+        this.eventColor = event.color;
+        this.eventActive = event.active;
+        this.climber = event.climbers.find(c => c.id === climberId);
+        this.eventBoulders = event.options.boulders;
 
-            if (!this.climber) {
-              this.router.navigate(['/events', eventId, 'climbers']);
-            }
-          });
+        if (!this.climber) {
+          this.router.navigate(['/events', eventId, 'climbers']);
+        }
+      });
   }
 
   ngOnDestroy(): void {
-    
+
   }
 
   onBoulderTopClick(index: number): void {
@@ -55,9 +54,7 @@ export class ClimberPageComponent implements OnInit {
         this.climber.boulders[index].validateZone = true;
       }
 
-      this.api.updateClimber(this.climber.eventId, this.climber.id, {boulders: this.climber.boulders}).subscribe(climber => {
-        this.climber = climber;
-      });
+      this.api.updateClimber(this.climber.eventId, this.climber.id, {boulders: this.climber.boulders}).subscribe();
     }
   }
 
@@ -69,9 +66,7 @@ export class ClimberPageComponent implements OnInit {
         this.climber.boulders[index].validateTop = false;
       }
 
-      this.api.updateClimber(this.climber.eventId, this.climber.id, {boulders: this.climber.boulders}).subscribe(climber => {
-        this.climber = climber;
-      });
+      this.api.updateClimber(this.climber.eventId, this.climber.id, {boulders: this.climber.boulders}).subscribe();
     }
   }
 
