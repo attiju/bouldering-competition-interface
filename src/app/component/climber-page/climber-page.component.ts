@@ -16,7 +16,6 @@ export class ClimberPageComponent implements OnInit {
   public eventColor?: string;
   public eventBoulders?: EventOptionsBoulder[];
   public eventActive?: boolean;
-  public polling?: Subscription;
 
   constructor(
     private api: ApiService,
@@ -30,10 +29,8 @@ export class ClimberPageComponent implements OnInit {
     const eventId = this.route.snapshot.params['eventId'];
     const climberId = this.route.snapshot.params['climberId'];
 
-    this.polling = timer(0, 10000)
-      .subscribe(() => {
-        this.api.getEventDetails(eventId)
-          .subscribe(event => {
+    this.api.getEventDetails(eventId)
+        .subscribe(event => {
             this.eventName = event.name;
             this.eventColor = event.color;
             this.eventActive = event.active;
@@ -44,11 +41,10 @@ export class ClimberPageComponent implements OnInit {
               this.router.navigate(['/events', eventId, 'climbers']);
             }
           });
-      });
   }
 
   ngOnDestroy(): void {
-    this.polling?.unsubscribe();
+    
   }
 
   onBoulderTopClick(index: number): void {
