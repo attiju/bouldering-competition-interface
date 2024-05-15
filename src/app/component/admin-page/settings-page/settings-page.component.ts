@@ -11,6 +11,7 @@ import {EventDetails} from "../../../model/api";
 export class SettingsPageComponent implements OnInit {
 
   public changeDetected: boolean = false;
+  public eventUrl = '';
 
   public event?: EventDetails;
 
@@ -26,7 +27,10 @@ export class SettingsPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.changeDetected = false;
-    this.service.event.subscribe(event => this.event = event);
+    this.service.event.subscribe(event => {
+      this.event = event;
+      this.eventUrl = `${window.location.origin}/events/${event!.id}/climbers`;
+    });
   }
 
   public switchEventStatus(): void {

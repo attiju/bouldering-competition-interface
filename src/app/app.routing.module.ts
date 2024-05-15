@@ -6,6 +6,7 @@ import {ClimberPageComponent} from "./component/climber-page/climber-page.compon
 import {ClimberListPageComponent} from "./component/admin-page/climber-list-page/climber-list-page.component";
 import {SettingsPageComponent} from "./component/admin-page/settings-page/settings-page.component";
 import {LeaderboardsPageComponent} from "./component/leaderboards-page/leaderboards-page.component";
+import {ClimbersPageComponent} from "./component/climbers-page/climbers-page.component";
 
 const routes: Routes = [
   {
@@ -31,12 +32,10 @@ const routes: Routes = [
       },
     ]
   },
-  /*
   {
     path: 'events/:eventId/climbers',
     component: ClimbersPageComponent
   },
-  */
   {
     path: 'events/:eventId/leaderboards',
     component: LeaderboardsPageComponent
